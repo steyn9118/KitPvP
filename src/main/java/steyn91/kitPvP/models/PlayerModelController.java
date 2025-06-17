@@ -1,5 +1,7 @@
 package steyn91.kitPvP.models;
 
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -13,8 +15,8 @@ public class PlayerModelController {
         return model;
     }
 
-    public static void putModel(UUID uuid, PlayerModel model){
-        playerModels.put(uuid, model);
+    public static void addPlayer(Player player){
+
     }
 
     public static void removeModel(UUID uuid){

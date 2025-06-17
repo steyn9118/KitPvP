@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class PlayerModel {
 
-    public enum State{
+    public enum State {
         IDLE,
         PLAYING,
         SPECTATING
@@ -16,5 +16,7 @@ public class PlayerModel {
     private State state;
     private BundleInterface bundle;
 
-
+    public BundleInterface getBundle() {
+        return bundle;
+    }
 }
