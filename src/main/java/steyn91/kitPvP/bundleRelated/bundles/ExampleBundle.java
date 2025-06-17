@@ -24,4 +24,34 @@ public class ExampleBundle implements BundleInterface {
     public void useSecondary() {
 
     }
+
+    @Override
+    public void useAbilityF() {
+
+    }
+
+    @Override
+    public void useAbilityQ() {
+
+    }
+
+    @Override
+    public void useAbility1() {
+
+    }
+
+    @Override
+    public void useAbility2() {
+
+    }
+
+    @Override
+    public void useAbility3() {
+
+    }
+
+    @Override
+    public BundleCore getBundleCore() {
+        return null;
+    }
 }
