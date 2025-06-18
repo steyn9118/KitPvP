@@ -2,8 +2,6 @@ package steyn91.kitPvP.bundleRelated.bundles;
 
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.abilityModules.ChainedMethodWrap;
-import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
 import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
 
 public class ExampleBundle implements BundleInterface {
