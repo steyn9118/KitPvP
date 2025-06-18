@@ -8,12 +8,7 @@ import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
 
 public class ExampleBundle implements BundleInterface {
 
-    BundleCore core = new BundleCore(
-            200,
-            200,
-            100,
-            100
-    );
+    BundleCore core = new BundleCore(200, 200);
 
     @Override
     public void usePrimary() {
