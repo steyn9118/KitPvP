@@ -16,7 +16,8 @@ public class PlayerModelController {
     }
 
     public static void addPlayer(Player player){
-
+        PlayerModel newModel = new PlayerModel();
+        playerModels.put(player.getUniqueId(), newModel);
     }
 
     public static void removeModel(UUID uuid){

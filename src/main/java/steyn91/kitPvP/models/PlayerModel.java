@@ -17,6 +17,12 @@ public class PlayerModel {
         private int currentResource;
         // TODO ещё характеристики
 
+
+        public PlayerModelCore(int currentHealth, int currentResource) {
+            this.currentHealth = currentHealth;
+            this.currentResource = currentResource;
+        }
+
         public int getCurrentHealth(){
             return currentHealth;
         }
@@ -26,9 +32,20 @@ public class PlayerModel {
         }
     }
 
+
+
     private State state;
     private BundleInterface bundle;
     private PlayerModelCore core;
+
+    public PlayerModel(){
+        state = State.IDLE;
+        bundle = null;
+        core = new PlayerModelCore(
+                200,
+                1000
+        );
+    }
 
     public BundleInterface getBundle() {
         return bundle;
@@ -51,4 +68,6 @@ public class PlayerModel {
     public void setCore(PlayerModelCore core) {
         this.core = core;
     }
+
+
 }

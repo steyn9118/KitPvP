@@ -47,6 +47,6 @@ public class ExampleBundle implements BundleInterface {
 
     @Override
     public BundleCore getBundleCore() {
-        return null;
+        return core;
     }
 }
