@@ -9,9 +9,6 @@ public class ParticleAdapter {
         INTERVAL_TIMER() // парктиклы появляются с каким то интервалом
     }
 
-
-
-
     public void singularParticle(ConditionOfStay condition)  {
             switch (condition) {
                 case WHILE_EXISTS:
@@ -19,12 +16,8 @@ public class ParticleAdapter {
                 case INTERVAL_TIMER:
                     break;
                 case TIMER:
+
                     break;
-
             }
-
     }
-
-
-    
 }
