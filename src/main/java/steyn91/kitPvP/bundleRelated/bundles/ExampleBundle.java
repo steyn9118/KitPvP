@@ -6,7 +6,7 @@ import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
 
 public class ExampleBundle implements BundleInterface {
 
-    BundleCore core = new BundleCore(200, 200);
+    BundleCore core = new BundleCore(200, 0,0,0,0,0,0,0,0,0);
 
     @Override
     public void usePrimary() {

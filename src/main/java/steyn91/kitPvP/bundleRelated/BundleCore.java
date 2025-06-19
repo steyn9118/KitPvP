@@ -1,7 +1,7 @@
 package steyn91.kitPvP.bundleRelated;
 
 // TODO остальные характеристики для перса
-
+// Статические характеристики для каждого кита
 public record BundleCore (
         double maxHealth,
         double naturalHealthRegen,

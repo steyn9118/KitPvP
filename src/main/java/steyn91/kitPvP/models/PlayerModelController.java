@@ -19,8 +19,10 @@ public class PlayerModelController {
         PlayerModel newModel = new PlayerModel();
         playerModels.put(player.getUniqueId(), newModel);
     }
-
     public static void removeModel(UUID uuid){
         playerModels.remove(uuid);
+    }
+    public static void addModel(UUID uuid, PlayerModel model) {
+        playerModels.put(uuid,model);
     }
 }

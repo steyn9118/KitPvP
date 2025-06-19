@@ -9,8 +9,6 @@ import steyn91.kitPvP.models.PlayerModel;
 import steyn91.kitPvP.models.PlayerModelController;
 
 public class InputProcessor implements Listener {
-
-    // TODO обработка нажатий на кнопки и передача на соответсвующий PlayerModel
     @EventHandler
     public void onPressLeftRight(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -65,6 +63,7 @@ public class InputProcessor implements Listener {
                 break;
         }
     }
+    //TODO откючит взаимодействие с инв, только просомтр лора предметов
     @EventHandler
     public void onInvClick(InventoryClickEvent event) {
         if (event.getInventory().getHolder() == null) {

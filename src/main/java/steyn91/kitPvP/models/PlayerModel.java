@@ -2,6 +2,7 @@ package steyn91.kitPvP.models;
 
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
+import steyn91.kitPvP.bundleRelated.bundles.ExampleBundle;
 
 public class PlayerModel {
 
@@ -13,8 +14,8 @@ public class PlayerModel {
 
     // Все динамические характеристики игрока
     public class PlayerModelCore {
-        private int currentHealth;
-        private int currentResource;
+        private double currentHealth;
+        private double currentResource;
         // TODO ещё характеристики
 
 
@@ -23,7 +24,7 @@ public class PlayerModel {
             this.currentResource = currentResource;
         }
 
-        public int getCurrentHealth(){
+        public double getCurrentHealth(){
             return currentHealth;
         }
 
@@ -53,7 +54,7 @@ public class PlayerModel {
 
     public void setBundle(BundleInterface newBundle){
         bundle = newBundle;
-        BundleCore bundleCore = bundle.getBundleCore();
+        BundleCore bundleCore = newBundle.getBundleCore();
 
         // Копирование максимальных характеристик персонажа в игрока
         core.currentHealth = bundleCore.maxHealth();
