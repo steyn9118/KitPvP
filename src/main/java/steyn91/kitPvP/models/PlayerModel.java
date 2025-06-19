@@ -54,7 +54,7 @@ public class PlayerModel {
 
     public void setBundle(BundleInterface newBundle){
         bundle = newBundle;
-        BundleCore bundleCore = newBundle.getBundleCore();
+        BundleCore bundleCore = bundle.getBundleCore();
 
         // Копирование максимальных характеристик персонажа в игрока
         core.currentHealth = bundleCore.maxHealth();
