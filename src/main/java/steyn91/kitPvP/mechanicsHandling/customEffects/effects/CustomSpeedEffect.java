@@ -5,9 +5,27 @@ import steyn91.kitPvP.mechanicsHandling.customEffects.EffectInterface;
 public class CustomSpeedEffect implements EffectInterface {
 
     private int remainingTime;
+    private int tickingInterval;
 
     @Override
     public int getRemainingTime() {
-        return 0;
+        return remainingTime;
     }
+
+    @Override
+    public int getTickingInterval() {
+        return tickingInterval;
+    }
+
+    @Override
+    public boolean tick() {
+        if (remainingTime % tickingInterval == 0){
+
+        }
+
+        boolean isEnded = remainingTime == 0;
+        return isEnded;
+    }
+
+
 }

@@ -5,11 +5,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class KitPvP extends JavaPlugin {
 
+    private static KitPvP plugin;
+
     @Override
     public void onEnable() {
         ParticleSFX.setPlugin(this);
-        // Plugin startup logic
+        plugin = this;
 
+    }
+
+    public static KitPvP getPlugin(){
+        return plugin;
     }
 
     @Override
