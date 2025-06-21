@@ -3,6 +3,7 @@ package steyn91.kitPvP.bundleRelated.bundles;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
 import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
+import steyn91.kitPvP.mechanicsHandling.ParticleAdapter;
 
 public class ExampleBundle implements BundleInterface {
 
