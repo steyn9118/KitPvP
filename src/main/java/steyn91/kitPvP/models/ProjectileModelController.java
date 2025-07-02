@@ -7,8 +7,8 @@ import java.util.UUID;
 public class ProjectileModelController {
     public static HashMap<UUID, ProjectileModel> projectilesModels = new HashMap<>();
 
-    public static ProjectileModel addProjectile(Class projectile, PlayerModel playerModel, Location sourceLocation) {
-        ProjectileModel projectileModel = new ProjectileModel(playerModel.getPlayer().getWorld().spawn(sourceLocation, projectile), playerModel);
+    public static ProjectileModel addProjectile(Class projectile, PlayerModel playerModel, Location sourceLocation, Double projectileDamage) {
+        ProjectileModel projectileModel = new ProjectileModel(playerModel.getPlayer().getWorld().spawn(sourceLocation, projectile), playerModel, projectileDamage);
         projectilesModels.put(projectileModel.getProjectile().getUniqueId(), projectileModel);
         return projectileModel;
     }

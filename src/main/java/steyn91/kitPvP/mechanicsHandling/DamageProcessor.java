@@ -20,7 +20,11 @@ public class DamageProcessor implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         if (event.getHitEntity() == null) return;
-        dealDamage(ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId()).getProjectileSource().getPlayer(),event.getHitEntity(), 1);
+        dealDamage(
+                ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId()).getProjectileSource().getPlayer(),
+                event.getHitEntity(),
+                ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId()).getProjectileDamage()
+        );
         event.setCancelled(true);
     }
 
@@ -37,6 +41,9 @@ public class DamageProcessor implements Listener {
     // TODO обработка нанесения/получения урона
     public static void dealDamage(Entity source, Entity target, double damageAmount){
         source.sendMessage(Component.text(source + " дал пизды " + target.toString() + " на " + damageAmount + " урона"));
+    }
+    public static void dealHeal(Entity source, Entity target, double healAmount) {
+        source.sendMessage(Component.text(source + "присунул" + target.toString() + "на" + healAmount + "см"));
     }
 
 }

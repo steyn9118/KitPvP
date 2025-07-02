@@ -18,6 +18,4 @@ public record BundleCore (
         double healingEfficiency,
 
         double endurance
-
-
 ) {}
