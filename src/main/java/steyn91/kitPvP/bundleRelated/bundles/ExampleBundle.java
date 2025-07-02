@@ -1,10 +1,11 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
 import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
+import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
 import steyn91.kitPvP.models.PlayerModel;
 
 public class ExampleBundle implements BundleInterface {
@@ -16,7 +17,7 @@ public class ExampleBundle implements BundleInterface {
         Player player = playerModel.getPlayer();
         MeleeModule.meleeDamageSimple(
                 playerModel,
-                player.getLocation().clone().add(player.getLocation().getDirection().clone().multiply(2)),
+                player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
                 5.5,
                 () -> {}
@@ -25,7 +26,14 @@ public class ExampleBundle implements BundleInterface {
 
     @Override
     public void useSecondary(PlayerModel playerModel) {
-
+        Player player = playerModel.getPlayer();
+        RangedModule.shootProjectile(
+                Arrow.class,
+                1.00,
+                playerModel,
+                player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
+                () ->  {}
+        );
     }
 
     @Override

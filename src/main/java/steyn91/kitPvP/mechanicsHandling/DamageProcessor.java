@@ -5,14 +5,22 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import steyn91.kitPvP.models.PlayerModelController;
+import steyn91.kitPvP.models.ProjectileModelController;
 
 public class DamageProcessor implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent event){
+        event.setCancelled(true);
+    }
+    @EventHandler
+    public void onProjectileHit(ProjectileHitEvent event) {
+        if (event.getHitEntity() == null) return;
+        dealDamage(ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId()).getProjectileSource().getPlayer(),event.getHitEntity(), 1);
         event.setCancelled(true);
     }
 
