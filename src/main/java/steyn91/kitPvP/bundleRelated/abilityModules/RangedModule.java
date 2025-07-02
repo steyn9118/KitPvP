@@ -5,7 +5,6 @@ public class RangedModule {
 
     public static void shootProjectile(ChainedMethodWrap wrap){
 
-
         wrap.chain();
     }
 
