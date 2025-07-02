@@ -41,7 +41,7 @@ public class PlayerModel {
     private final Player player;
 
     public PlayerModel(Player player){
-        state = State.IDLE;
+        state = State.PLAYING; //TODO убрать в релизе
         bundle = null;
         core = new PlayerModelCore(
                 200,
@@ -74,6 +74,9 @@ public class PlayerModel {
 
     public void setCore(PlayerModelCore core) {
         this.core = core;
+    }
+    public State getState() {
+        return state;
     }
 
 
