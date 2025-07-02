@@ -1,8 +1,8 @@
 package steyn91.kitPvP.models;
 
+import org.bukkit.entity.Player;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.bundles.ExampleBundle;
 
 public class PlayerModel {
 
@@ -38,14 +38,20 @@ public class PlayerModel {
     private State state;
     private BundleInterface bundle;
     private PlayerModelCore core;
+    private final Player player;
 
-    public PlayerModel(){
+    public PlayerModel(Player player){
         state = State.IDLE;
         bundle = null;
         core = new PlayerModelCore(
                 200,
                 1000
         );
+        this.player = player;
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public BundleInterface getBundle() {

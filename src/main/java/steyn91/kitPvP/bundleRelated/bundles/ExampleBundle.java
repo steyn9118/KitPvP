@@ -1,48 +1,55 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
-import steyn91.kitPvP.mechanicsHandling.ParticleAdapter;
+import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
+import steyn91.kitPvP.models.PlayerModel;
 
 public class ExampleBundle implements BundleInterface {
 
     BundleCore core = new BundleCore(200, 0,0,0,0,0,0,0,0,0);
 
     @Override
-    public void usePrimary() {
-        RangedModule.shootProjectile(() -> {
-
-        });
+    public void usePrimary(PlayerModel playerModel) {
+        Player player = playerModel.getPlayer();
+        MeleeModule.meleeDamageSimple(
+                playerModel,
+                player.getLocation().clone().add(player.getLocation().getDirection().clone().multiply(2)),
+                new Vector(3, 1.5, 1),
+                5.5,
+                () -> {}
+        );
     }
 
     @Override
-    public void useSecondary() {
-
-    }
-
-    @Override
-    public void useAbilityF() {
-
-    }
-
-    @Override
-    public void useAbilityQ() {
+    public void useSecondary(PlayerModel playerModel) {
 
     }
 
     @Override
-    public void useAbility1() {
+    public void useAbilityF(PlayerModel playerModel) {
 
     }
 
     @Override
-    public void useAbility2() {
+    public void useAbilityQ(PlayerModel playerModel) {
 
     }
 
     @Override
-    public void useAbility3() {
+    public void useAbility1(PlayerModel playerModel) {
+
+    }
+
+    @Override
+    public void useAbility2(PlayerModel playerModel) {
+
+    }
+
+    @Override
+    public void useAbility3(PlayerModel playerModel) {
 
     }
 

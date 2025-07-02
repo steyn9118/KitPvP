@@ -1,9 +1,13 @@
 package steyn91.kitPvP.mechanicsHandling;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import steyn91.kitPvP.models.PlayerModelController;
 
 public class DamageProcessor implements Listener {
 
@@ -12,9 +16,19 @@ public class DamageProcessor implements Listener {
         event.setCancelled(true);
     }
 
-    // TODO обработка нанесения/получения урона
-    public void dealDamage(Entity source, Entity target, int damageAmount){
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event){
+        PlayerModelController.addPlayer(event.getPlayer());
+    }
 
+    @EventHandler
+    public void onLeave(PlayerQuitEvent event){
+        PlayerModelController.removeModel(event.getPlayer().getUniqueId());
+    }
+
+    // TODO обработка нанесения/получения урона
+    public static void dealDamage(Entity source, Entity target, double damageAmount){
+        source.sendMessage(Component.text(source + " дал пизды " + target.toString() + " на " + damageAmount + " урона"));
     }
 
 }

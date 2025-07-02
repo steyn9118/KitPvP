@@ -19,9 +19,9 @@ public class InputProcessor implements Listener {
             throw new RuntimeException(e);
         }
         if (event.getAction().isLeftClick()) {
-            model.getBundle().usePrimary();
+            model.getBundle().usePrimary(model);
         }
-        else model.getBundle().useSecondary();
+        else model.getBundle().useSecondary(model);
     }
     @EventHandler
     public void onPressF(PlayerSwapHandItemsEvent event) {
@@ -32,7 +32,7 @@ public class InputProcessor implements Listener {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.getBundle().useAbilityF();
+        model.getBundle().useAbilityF(model);
     }
     @EventHandler
     public void onPressQ(PlayerDropItemEvent event) {
@@ -43,7 +43,7 @@ public class InputProcessor implements Listener {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        model.getBundle().useAbilityQ();
+        model.getBundle().useAbilityQ(model);
     }
     @EventHandler
     public void onPress123(PlayerItemHeldEvent event) {
@@ -55,11 +55,11 @@ public class InputProcessor implements Listener {
             throw new RuntimeException(e);
         }
         switch (event.getNewSlot()) {
-            case 0: model.getBundle().useAbility1();
+            case 0: model.getBundle().useAbility1(model);
                 break;
-            case 1: model.getBundle().useAbility2();
+            case 1: model.getBundle().useAbility2(model);
                 break;
-            case 2: model.getBundle().useAbility3();
+            case 2: model.getBundle().useAbility3(model);
                 break;
         }
     }
