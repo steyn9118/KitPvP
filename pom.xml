@@ -6,7 +6,7 @@
 
     <groupId>steyn91</groupId>
     <artifactId>kitpvp</artifactId>
-    <version>0.1</version>
+    <version>0.1.2</version>
     <packaging>jar</packaging>
 
     <name>kitpvp</name>
