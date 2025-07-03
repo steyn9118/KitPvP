@@ -19,10 +19,10 @@ public class PlayerModelController {
     public static void addPlayer(Player player){
         PlayerModel newModel = new PlayerModel(player);
         playerModels.put(player.getUniqueId(), newModel);
-        newModel.setBundle(new ExampleBundle());
+        newModel.setBundle(new ExampleBundle(newModel));
     }
     public static void removeModel(UUID uuid){
-        playerModels.remove(uuid);
+        playerModels.remove(uuid).getBundle().destruct();
     }
     public static void addModel(UUID uuid, PlayerModel model) {
         playerModels.put(uuid,model);

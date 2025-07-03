@@ -24,7 +24,7 @@ public class InputProcessor implements Listener {
             throw new RuntimeException(e);
         }
         if (!model.getState().equals(PlayerModel.State.PLAYING)) return;
-        model.getBundle().usePrimary(model);
+        model.getBundle().inputPrimary();
     }
     // Для левой и правой кнопки мыши
     @EventHandler
@@ -38,10 +38,10 @@ public class InputProcessor implements Listener {
         }
         if (!model.getState().equals(PlayerModel.State.PLAYING)) return;
         if (event.getAction().isLeftClick()) {
-            model.getBundle().usePrimary(model);
+            model.getBundle().inputPrimary();
         }
         else if (event.getAction().isRightClick()) {
-            model.getBundle().useSecondary(model);
+            model.getBundle().inputSecondary();
         }
     }
     @EventHandler
@@ -54,7 +54,7 @@ public class InputProcessor implements Listener {
             throw new RuntimeException(e);
         }
         if (!model.getState().equals(PlayerModel.State.PLAYING)) return;
-        model.getBundle().useAbilityF(model);
+        model.getBundle().inputAbilityF();
     }
     @EventHandler
     public void onPressQ(PlayerDropItemEvent event) {
@@ -66,7 +66,7 @@ public class InputProcessor implements Listener {
             throw new RuntimeException(e);
         }
         if (!model.getState().equals(PlayerModel.State.PLAYING)) return;
-        model.getBundle().useAbilityQ(model);
+        model.getBundle().inputAbilityQ();
     }
     @EventHandler
     public void onPress123(PlayerItemHeldEvent event) {
@@ -79,11 +79,11 @@ public class InputProcessor implements Listener {
         }
         if (!model.getState().equals(PlayerModel.State.PLAYING)) return;
         switch (event.getNewSlot()) {
-            case 0: model.getBundle().useAbility1(model);
+            case 0: model.getBundle().inputAbility1();
                 break;
-            case 1: model.getBundle().useAbility2(model);
+            case 1: model.getBundle().inputAbility2();
                 break;
-            case 2: model.getBundle().useAbility3(model);
+            case 2: model.getBundle().inputAbility3();
                 break;
         }
     }

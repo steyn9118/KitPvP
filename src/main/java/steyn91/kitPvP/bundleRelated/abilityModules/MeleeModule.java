@@ -15,7 +15,7 @@ import java.util.*;
 
 
 public class MeleeModule {
-    public static void meleeDamageSimple(PlayerModel sourceModel, Location anchorPoint, Vector boxSize, double damageAmount, ChainedMethodWrap wrap){
+    public static void meleeDamageSimple(PlayerModel sourceModel, Location anchorPoint, Vector boxSize, double damageAmount, MethodWrap wrap){
         Player player = sourceModel.getPlayer();
 
         for (Entity damagedEntity : getAllEntitiesInCuboid(
@@ -26,7 +26,7 @@ public class MeleeModule {
             DamageProcessor.dealDamage(player, damagedEntity, damageAmount);
         }
 
-        wrap.chain();
+        wrap.execute();
     }
 
     /// ТЕХНИЧЕСКИЕ МЕТОДЫ (ЖЁСКИЙ ВАЙБ КОДИНГ)
@@ -76,15 +76,15 @@ public class MeleeModule {
 
         // Поиск сущностей рядом
         double maxDist = Math.max(Math.max(length, width), height);
-        Collection<Entity> nearby = world.getNearbyEntities(center, maxDist, maxDist, maxDist); // TODO добавить сюда фильтр
+        Collection<Entity> nearby = world.getNearbyEntities(center, maxDist, maxDist, maxDist); // TODO добавить сюда фильтр по типу сущности
 
         for (Entity entity : nearby) {
-            BoundingBox bbox = entity.getBoundingBox();
+            BoundingBox entityHitbox = entity.getBoundingBox();
             boolean intersects = false;
 
             // A. Перебор точек визуализации (как раньше)
             for (Location point : cuboidPoints) {
-                if (bbox.contains(point.toVector())) {
+                if (entityHitbox.contains(point.toVector())) {
                     intersects = true;
                     break;
                 }
@@ -92,7 +92,7 @@ public class MeleeModule {
 
             // B. Доп. проверка: находится ли центр хитбокса внутри кубоида
             if (!intersects) {
-                Vector boxCenter = bbox.getCenter(); // в мировых координатах
+                Vector boxCenter = entityHitbox.getCenter(); // в мировых координатах
                 Vector relative = boxCenter.clone().subtract(center.toVector());
 
                 // Перевод точки в локальные координаты кубоида

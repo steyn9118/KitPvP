@@ -16,6 +16,7 @@ public class PlayerModel {
     public class PlayerModelCore {
         private double currentHealth;
         private double currentResource;
+        private double scale;
         // TODO ещё характеристики
 
 

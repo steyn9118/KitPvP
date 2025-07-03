@@ -6,16 +6,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import steyn91.kitPvP.models.PlayerModelController;
 import steyn91.kitPvP.models.ProjectileModelController;
 
 public class DamageProcessor implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent event){
-        event.setCancelled(true);
+        if (event.getDamage() < 999) event.setCancelled(true);
     }
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
@@ -26,16 +23,6 @@ public class DamageProcessor implements Listener {
                 ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId()).getProjectileDamage()
         );
         event.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event){
-        PlayerModelController.addPlayer(event.getPlayer());
-    }
-
-    @EventHandler
-    public void onLeave(PlayerQuitEvent event){
-        PlayerModelController.removeModel(event.getPlayer().getUniqueId());
     }
 
     // TODO обработка нанесения/получения урона
