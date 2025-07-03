@@ -29,10 +29,11 @@ public class ExampleBundle implements BundleInterface {
         Player player = playerModel.getPlayer();
         RangedModule.shootProjectile(
                 Arrow.class,
-                1.00,
+                1.0,
+                10.0,
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
-                () ->  {}
+                () -> {}
         );
     }
 
