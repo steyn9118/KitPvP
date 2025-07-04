@@ -5,9 +5,10 @@ import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.InputHandler;
+import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
 import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
 import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
+import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.models.PlayerModel;
 
 public class ExampleBundle implements BundleInterface {
@@ -16,8 +17,8 @@ public class ExampleBundle implements BundleInterface {
 
     PlayerModel playerModel;
 
-    public InputHandler primaryHandler;
-    public InputHandler secondaryHandler;
+    public SimpleInputHandler primaryHandler;
+    public HoldInputHandler secondaryHandler;
 
     public void destruct(){
         primaryHandler.destruct();
@@ -26,9 +27,17 @@ public class ExampleBundle implements BundleInterface {
 
     public ExampleBundle(PlayerModel playerModel){
         this.playerModel = playerModel;
-        primaryHandler = new InputHandler(InputHandler.InputHandlerType.SIMPLE, () -> usePrimary(playerModel));
-        secondaryHandler = new InputHandler(InputHandler.InputHandlerType.HOLD, () -> useSecondary(playerModel, secondaryHandler.getTicks()));
-        secondaryHandler.setKeepAliveReceiver(() -> holdSecondary(playerModel, secondaryHandler.getTicks()));
+        primaryHandler = new SimpleInputHandler(
+                () -> usePrimary(playerModel)
+        );
+        secondaryHandler = new HoldInputHandler(
+                4,
+                4,
+                () -> useSecondary(playerModel)
+        );
+        secondaryHandler.setKeepAliveReceiver(
+                () -> holdSecondary(playerModel)
+        );
     }
 
     private void usePrimary(PlayerModel playerModel) {
@@ -42,9 +51,9 @@ public class ExampleBundle implements BundleInterface {
         );
     }
 
-    private void useSecondary(PlayerModel playerModel, int ticks) {
+    private void useSecondary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
-        player.sendMessage(Component.text("Вы держались за яица " + ticks + " тиков"));
+        player.sendMessage(Component.text("Вы держались за яица " + secondaryHandler.getTicks() + " тиков"));
         RangedModule.shootProjectile(
                 Arrow.class,
                 1.0,
@@ -55,8 +64,8 @@ public class ExampleBundle implements BundleInterface {
         );
     }
 
-    private void holdSecondary(PlayerModel playerModel, int ticks){
-        playerModel.getPlayer().sendMessage(Component.text("Вы держитесь за яица уже " + ticks + " тиков"));
+    private void holdSecondary(PlayerModel playerModel){
+        playerModel.getPlayer().sendMessage(Component.text("Вы держитесь за яица уже " + secondaryHandler.getTicks() + " тиков"));
     }
 
     private void useAbilityF(PlayerModel playerModel) {
@@ -88,7 +97,7 @@ public class ExampleBundle implements BundleInterface {
 
     @Override
     public void inputSecondary() {
-
+        secondaryHandler.inputSignal();
     }
 
     @Override
