@@ -13,7 +13,18 @@ import steyn91.kitPvP.models.PlayerModel;
 
 public class ExampleBundle implements BundleInterface {
 
-    BundleCore core = new BundleCore(200, 0,0,0,0,0,0,0,0,0);
+    private final BundleCore core = new BundleCore(
+            200,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+    );
 
     PlayerModel playerModel;
 

@@ -14,6 +14,4 @@ public interface BundleInterface {
 
     BundleCore getBundleCore();
 
-    // TODO остальные способности и варианты их использования (зажатие и тд.)
-
 }
