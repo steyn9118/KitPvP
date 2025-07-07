@@ -1,4 +1,4 @@
-package steyn91.kitPvP.mechanicsHandling.customEffects;
+package steyn91.kitPvP.mechanicsRelated.customEffects;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import steyn91.kitPvP.KitPvP;

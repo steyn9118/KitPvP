@@ -1,4 +1,4 @@
-package steyn91.kitPvP.mechanicsHandling.customEffects;
+package steyn91.kitPvP.mechanicsRelated.customEffects;
 
 public interface EffectInterface {
 

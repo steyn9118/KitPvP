@@ -1,32 +1,29 @@
 package steyn91.kitPvP.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
 
 public class PlayerModel {
 
-    public enum State {
-        IDLE,
-        PLAYING,
-        SPECTATING
-    }
+
 
     // Все динамические характеристики игрока
     public class PlayerModelCore {
+        @Getter
         private double currentHealth;
+        @Getter
         private double currentResource;
+        @Getter
         private double scale;
-        // TODO ещё характеристики
+        // TODO ещё характеристики из bundle core и не только
 
 
         public PlayerModelCore(int currentHealth, int currentResource) {
             this.currentHealth = currentHealth;
             this.currentResource = currentResource;
-        }
-
-        public double getCurrentHealth(){
-            return currentHealth;
         }
 
         public void setCurrentHealth(int currentHealth) {
@@ -35,10 +32,14 @@ public class PlayerModel {
     }
 
 
-
+    @Getter
+    @Setter
     private State state;
+    @Getter
     private BundleInterface bundle;
-    private PlayerModelCore core;
+    @Getter
+    private final PlayerModelCore core;
+    @Getter
     private final Player player;
 
     public PlayerModel(Player player){
@@ -51,34 +52,20 @@ public class PlayerModel {
         this.player = player;
     }
 
-    public Player getPlayer(){
-        return player;
-    }
-
-    public BundleInterface getBundle() {
-        return bundle;
-    }
-
     public void setBundle(BundleInterface newBundle){
         bundle = newBundle;
         BundleCore bundleCore = bundle.getBundleCore();
 
-        // Копирование максимальных характеристик персонажа в игрока
+        // Копирование статических характеристик персонажа в игрока
         core.currentHealth = bundleCore.maxHealth();
         core.currentResource = bundleCore.maxResource();
         // TODO остальные характеристики
     }
 
-    public PlayerModelCore getCore() {
-        return core;
+    public enum State {
+        IDLE,
+        PLAYING,
+        SPECTATING
     }
-
-    public void setCore(PlayerModelCore core) {
-        this.core = core;
-    }
-    public State getState() {
-        return state;
-    }
-
 
 }

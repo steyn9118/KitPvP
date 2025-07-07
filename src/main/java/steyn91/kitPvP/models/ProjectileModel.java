@@ -1,10 +1,12 @@
 package steyn91.kitPvP.models;
 
+import lombok.Setter;
 import org.bukkit.entity.Entity;
 
 public class ProjectileModel {
     private final Entity projectile;
     private final PlayerModel playerModel;
+    @Setter
     private PlayerModel projectileSource;
     private final Double projectileDamage;
     // модель игрока как источник урона, для удобства
@@ -19,7 +21,7 @@ public class ProjectileModel {
     }
     public PlayerModel getPlayerModel() {return playerModel;}
     public PlayerModel getProjectileSource() {return projectileSource;}
-    public void setProjectileSource(PlayerModel projectileSource) {this.projectileSource = projectileSource;}
+
     public Double getProjectileDamage() {
         return projectileDamage;
     }

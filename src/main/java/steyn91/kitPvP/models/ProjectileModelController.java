@@ -5,13 +5,26 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class ProjectileModelController {
+
     public static HashMap<UUID, ProjectileModel> projectilesModels = new HashMap<>();
 
-    public static ProjectileModel addProjectile(Class projectile, PlayerModel playerModel, Location sourceLocation, Double projectileDamage) {
-        ProjectileModel projectileModel = new ProjectileModel(playerModel.getPlayer().getWorld().spawn(sourceLocation, projectile), playerModel, projectileDamage);
+
+
+    public static ProjectileModel addProjectile(
+            Class projectile,
+            PlayerModel playerModel,
+            Location sourceLocation,
+            Double projectileDamage
+    ){
+        ProjectileModel projectileModel = new ProjectileModel(
+                playerModel.getPlayer().getWorld().spawn(sourceLocation, projectile),
+                playerModel,
+                projectileDamage
+        );
         projectilesModels.put(projectileModel.getProjectile().getUniqueId(), projectileModel);
         return projectileModel;
     }
+
     public static ProjectileModel getProjectileModel(UUID uuid) {
         return projectilesModels.get(uuid);
     }

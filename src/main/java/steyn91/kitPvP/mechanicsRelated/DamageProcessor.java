@@ -1,4 +1,4 @@
-package steyn91.kitPvP.mechanicsHandling;
+package steyn91.kitPvP.mechanicsRelated;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -12,7 +12,6 @@ import steyn91.kitPvP.models.ProjectileModel;
 import steyn91.kitPvP.models.ProjectileModelController;
 
 import java.util.Collection;
-import java.util.Collections;
 
 public class DamageProcessor implements Listener {
 

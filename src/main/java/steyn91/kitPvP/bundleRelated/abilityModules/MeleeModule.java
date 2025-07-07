@@ -8,7 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
-import steyn91.kitPvP.mechanicsHandling.DamageProcessor;
+import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
 import steyn91.kitPvP.models.PlayerModel;
 
 import java.util.*;

@@ -1,13 +1,9 @@
-package steyn91.kitPvP.mechanicsHandling;
+package steyn91.kitPvP.mechanicsRelated;
 
-import io.papermc.paper.event.entity.EntityDamageItemEvent;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import steyn91.kitPvP.models.PlayerModel;
 import steyn91.kitPvP.models.PlayerModelController;

@@ -1,5 +1,6 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
+import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
@@ -13,7 +14,8 @@ import steyn91.kitPvP.models.PlayerModel;
 
 public class ExampleBundle implements BundleInterface {
 
-    private final BundleCore core = new BundleCore(
+    @Setter
+    private static BundleCore core = new BundleCore(
             200,
             0,
             0,
@@ -58,7 +60,9 @@ public class ExampleBundle implements BundleInterface {
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
                 5.5,
-                () -> {}
+                () -> {
+
+                }
         );
     }
 
@@ -71,6 +75,7 @@ public class ExampleBundle implements BundleInterface {
                 10.0,
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
+                player.getEyeLocation().getDirection(),
                 () -> {}
         );
     }
@@ -136,7 +141,6 @@ public class ExampleBundle implements BundleInterface {
 
     }
 
-    @Override
     public BundleCore getBundleCore() {
         return core;
     }

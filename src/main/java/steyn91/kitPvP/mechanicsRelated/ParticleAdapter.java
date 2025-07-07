@@ -1,8 +1,6 @@
-package steyn91.kitPvP.mechanicsHandling;
+package steyn91.kitPvP.mechanicsRelated;
 
 import com.ethermoor.GlimmerAPI;
-
-import java.util.function.Consumer;
 
 import static org.bukkit.Bukkit.getServer;
 

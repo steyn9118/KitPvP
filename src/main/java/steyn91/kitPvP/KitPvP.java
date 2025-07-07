@@ -4,9 +4,9 @@ import hm.zelha.particlesfx.util.ParticleSFX;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import steyn91.kitPvP.mechanicsHandling.BasicListeners;
-import steyn91.kitPvP.mechanicsHandling.DamageProcessor;
-import steyn91.kitPvP.mechanicsHandling.InputProcessor;
+import steyn91.kitPvP.mechanicsRelated.BasicListeners;
+import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
+import steyn91.kitPvP.mechanicsRelated.InputProcessor;
 
 public final class KitPvP extends JavaPlugin {
 
