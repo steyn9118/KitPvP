@@ -10,12 +10,12 @@ public record BundleCore (
         double naturalResourceRegen,
 
         double baseSpeed,
+        double baseSize,
 
         double cooldownRate,
         double primaryCooldownRate,
 
         double damageResistance,
-        double healingEfficiency,
 
         double endurance
 ) {}
