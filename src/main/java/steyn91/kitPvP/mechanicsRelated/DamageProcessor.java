@@ -22,16 +22,13 @@ public class DamageProcessor implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         event.setCancelled(true);
-        if (event.getHitEntity() == null) return;
+        if (event.getHitEntity() != null) return;
         Entity entity = event.getEntity();
         PubSubCore.publish(entity.getUniqueId(), event.getEntity().getLocation());
         ProjectileModel projectileModel = ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId());
-        dealDamage(
-                projectileModel.getPlayerModel().getPlayer(),
-                event.getHitEntity(),
-                projectileModel.getProjectileDamage()
-        );
+        ProjectileModelController.removeProjectileModel(projectileModel.getProjectile().getUniqueId());
     }
+
 
     // TODO обработка нанесения/получения урона
     public static void dealDamage(Entity source, Entity target, double damageAmount){

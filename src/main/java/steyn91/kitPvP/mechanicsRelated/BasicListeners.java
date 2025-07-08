@@ -19,8 +19,4 @@ public class BasicListeners implements Listener {
         PlayerModelController.removeModel(event.getPlayer().getUniqueId());
     }
 
-    @EventHandler
-    public void onProjectileHit(ProjectileHitEvent event){
-
-    }
 }

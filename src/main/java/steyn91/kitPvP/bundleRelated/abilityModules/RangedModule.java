@@ -17,10 +17,10 @@ public class RangedModule {
             Double projectileDamage,
             PlayerModel sourceModel,
             Location sourceLocation,
-            Vector direction,
+            Vector direction, // нельзя делать нулевым
             MethodWrapWithLocation wrap
     ){
-        ProjectileModel projectileModel = ProjectileModelController.addProjectile(projectile, sourceModel, sourceLocation, projectileDamage);
+        ProjectileModel projectileModel = ProjectileModelController.addProjectileModel(projectile, sourceModel, sourceLocation, projectileDamage);
         projectileModel.getProjectile().setVelocity(direction.normalize().multiply(strength)); // запускает projectile по направлению взгляда игрока, умноженный на силу strength
         UUID uuid = projectileModel.getProjectile().getUniqueId();
         PubSubCore.subLocation(uuid, (hitLocation) -> wrap.execute(hitLocation));

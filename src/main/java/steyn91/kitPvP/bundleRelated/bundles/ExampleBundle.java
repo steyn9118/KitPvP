@@ -7,6 +7,7 @@ import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
+import steyn91.kitPvP.bundleRelated.abilityModules.AreaBoxModule;
 import steyn91.kitPvP.bundleRelated.abilityModules.EntitySummonModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
 import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
@@ -74,10 +75,10 @@ public class ExampleBundle implements BundleInterface {
                 1.0,
                 10.0,
                 playerModel,
-                player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
+                player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(1)),
                 player.getEyeLocation().getDirection(),
                 (hitLocation) -> {
-                    EntitySummonModule.summonEntitySimple(hitLocation);
+                    EntitySummonModule.summonEntitySimple(playerModel, hitLocation, Allay.class, 20.0, 100, (location) -> RangedModule.shootProjectile(Arrow.class, 1.0, 1.0, playerModel, location, new Vector(0,1,0), (hitLocation1) ->{AreaBoxModule.spawnAreaBox(playerModel, hitLocation1, 1, 5.0, 5.0,5.0);}));
                 }
         );
     }

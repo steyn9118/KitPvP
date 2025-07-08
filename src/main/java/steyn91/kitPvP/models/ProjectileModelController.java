@@ -1,16 +1,17 @@
 package steyn91.kitPvP.models;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class ProjectileModelController {
 
-    public static HashMap<UUID, ProjectileModel> projectilesModels = new HashMap<>();
+    private static final HashMap<UUID, ProjectileModel> projectilesModels = new HashMap<>();
 
 
 
-    public static ProjectileModel addProjectile(
+    public static ProjectileModel addProjectileModel(
             Class projectile,
             PlayerModel playerModel,
             Location sourceLocation,
@@ -23,6 +24,11 @@ public class ProjectileModelController {
         );
         projectilesModels.put(projectileModel.getProjectile().getUniqueId(), projectileModel);
         return projectileModel;
+    }
+
+    public static void removeProjectileModel(UUID uuid) {
+        projectilesModels.get(uuid).getProjectile().remove();
+        projectilesModels.remove(uuid);
     }
 
     public static ProjectileModel getProjectileModel(UUID uuid) {

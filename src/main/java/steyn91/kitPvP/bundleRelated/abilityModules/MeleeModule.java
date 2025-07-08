@@ -18,7 +18,6 @@ import java.util.*;
 public class MeleeModule {
     public static void meleeDamageSimple(PlayerModel sourceModel, Location anchorPoint, Vector boxSize, double damageAmount, MethodWrap wrap){
         Player player = sourceModel.getPlayer();
-
         for (Entity damagedEntity : getAllEntitiesInCuboid(
                 player.getEyeLocation().getDirection(),
                 anchorPoint,

@@ -1,5 +1,4 @@
 steyn91\kitPvP\bundleRelated\inputHandlers\TriggerInputHandler$1.class
-steyn91\kitPvP\PubSubCore.class
 steyn91\kitPvP\KitPvP.class
 steyn91\kitPvP\mechanicsRelated\customEffects\effects\CustomSpeedEffect.class
 steyn91\kitPvP\mapRelated\mapFeatures\JumpPad.class
@@ -9,10 +8,10 @@ steyn91\kitPvP\bundleRelated\inputHandlers\HoldInputHandler$1.class
 steyn91\kitPvP\models\LivingEntityModel.class
 steyn91\kitPvP\bundleRelated\BundleCore.class
 steyn91\kitPvP\mechanicsRelated\ParticleAdapter.class
+steyn91\kitPvP\mechanicsRelated\PubSubCore.class
+steyn91\kitPvP\bundleRelated\abilityModules\wraps\MethodWrap.class
 steyn91\kitPvP\bundleRelated\inputHandlers\HoldInputHandler.class
 steyn91\kitPvP\mechanicsRelated\InputProcessor.class
-steyn91\kitPvP\bundleRelated\abilityModules\MethodWrapWithLocation.class
-steyn91\kitPvP\bundleRelated\abilityModules\MethodWrap.class
 steyn91\kitPvP\dataRelated\Configs.class
 steyn91\kitPvP\commands\AdminCommands.class
 steyn91\kitPvP\mechanicsRelated\DamageProcessor.class
@@ -22,8 +21,10 @@ steyn91\kitPvP\models\ProjectileModelController.class
 steyn91\kitPvP\bundleRelated\abilityModules\RangedModule.class
 steyn91\kitPvP\bundleRelated\inputHandlers\InputHandlerInterface.class
 steyn91\kitPvP\models\ProjectileModel.class
+steyn91\kitPvP\bundleRelated\abilityModules\EntitySummonModule$1.class
 steyn91\kitPvP\mechanicsRelated\BasicListeners.class
 steyn91\kitPvP\mechanicsRelated\customEffects\CustomEffectController.class
+steyn91\kitPvP\bundleRelated\abilityModules\wraps\MethodWrapWithLocation.class
 steyn91\kitPvP\mechanicsRelated\customEffects\EffectInterface.class
 steyn91\kitPvP\models\LivingEntityModelController.class
 steyn91\kitPvP\bundleRelated\abilityModules\AreaBoxModule.class
