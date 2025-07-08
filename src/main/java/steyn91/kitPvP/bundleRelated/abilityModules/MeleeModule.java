@@ -8,6 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
+import steyn91.kitPvP.bundleRelated.abilityModules.wraps.MethodWrap;
 import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
 import steyn91.kitPvP.models.PlayerModel;
 

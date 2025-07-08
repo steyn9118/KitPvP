@@ -1,6 +1,7 @@
 package steyn91.kitPvP;
 
 import hm.zelha.particlesfx.util.ParticleSFX;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,11 +11,11 @@ import steyn91.kitPvP.mechanicsRelated.InputProcessor;
 
 public final class KitPvP extends JavaPlugin {
 
+    @Getter
     private static KitPvP plugin;
 
     @Override
     public void onEnable() {
-        ParticleSFX.setPlugin(this);
         plugin = this;
 
         PluginManager manager = Bukkit.getServer().getPluginManager();
@@ -22,10 +23,6 @@ public final class KitPvP extends JavaPlugin {
         manager.registerEvents(new InputProcessor(), this);
         manager.registerEvents(new BasicListeners(), this);
 
-    }
-
-    public static KitPvP getPlugin(){
-        return plugin;
     }
 
     @Override

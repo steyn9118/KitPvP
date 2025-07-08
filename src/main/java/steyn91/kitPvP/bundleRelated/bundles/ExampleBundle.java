@@ -2,10 +2,12 @@ package steyn91.kitPvP.bundleRelated.bundles;
 
 import lombok.Setter;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
+import steyn91.kitPvP.bundleRelated.abilityModules.EntitySummonModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
 import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
 import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
@@ -60,9 +62,7 @@ public class ExampleBundle implements BundleInterface {
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
                 5.5,
-                () -> {
-
-                }
+                () -> {}
         );
     }
 
@@ -76,7 +76,9 @@ public class ExampleBundle implements BundleInterface {
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 player.getEyeLocation().getDirection(),
-                () -> {}
+                (hitLocation) -> {
+                    EntitySummonModule.summonEntitySimple(hitLocation);
+                }
         );
     }
 

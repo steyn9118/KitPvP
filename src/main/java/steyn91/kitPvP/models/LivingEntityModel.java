@@ -5,4 +5,5 @@ import org.bukkit.entity.EntityType;
 import java.util.UUID;
 
 public class LivingEntityModel {
+    private PlayerModel playerModel;
 }
