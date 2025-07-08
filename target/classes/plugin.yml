@@ -1,0 +1,5 @@
+name: KitPvP
+version: '0.1'
+main: steyn91.kitPvP.KitPvP
+api-version: '1.21'
+depend: [CommandAPI]
