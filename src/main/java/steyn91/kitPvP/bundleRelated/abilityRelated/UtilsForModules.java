@@ -1,35 +1,44 @@
-package steyn91.kitPvP.bundleRelated.abilityModules;
+package steyn91.kitPvP.bundleRelated.abilityRelated;
 
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
-import steyn91.kitPvP.bundleRelated.abilityModules.wraps.MethodWrap;
-import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
-import steyn91.kitPvP.models.PlayerModel;
+import steyn91.kitPvP.KitPvP;
+import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
 
 import java.util.*;
 
-
-public class MeleeModule {
-    public static void meleeDamageSimple(PlayerModel sourceModel, Location anchorPoint, Vector boxSize, double damageAmount, MethodWrap wrap){
-        Player player = sourceModel.getPlayer();
-        for (Entity damagedEntity : getAllEntitiesInCuboid(
-                player.getEyeLocation().getDirection(),
-                anchorPoint,
-                boxSize)
-        ){
-            DamageProcessor.dealDamage(player, damagedEntity, damageAmount);
-        }
-
-        wrap.execute();
+/// Технические методы, которые нужны или могут понадобиться для абилити модулей
+//TODO добавить методы для упрощения поиска сущностей по разной по формам и размерам области
+// подумать нужны ли методы для запуска прожектайлов и энтити по каким то сэмплам траекторий
+public class UtilsForModules {
+    public static void startTaskLater(int delay, MethodWrap wrap) {
+        BukkitRunnable runnable = new BukkitRunnable() {
+            @Override
+            public void run() {
+                wrap.execute();
+            }
+        };
+        runnable.runTaskLater(KitPvP.getPlugin(), delay);
     }
 
-    /// ТЕХНИЧЕСКИЕ МЕТОДЫ (ЖЁСКИЙ ВАЙБ КОДИНГ)
+    public static void startTask(int period, int delay, int time, MethodWrap wrap) {
+        BukkitRunnable runnable = new BukkitRunnable() {
+            int counter;
+            @Override
+            public void run() {
+                if (counter == time) cancel();
+                wrap.execute();
+                counter++;
+            }
+        };
+        runnable.runTaskTimer(KitPvP.getPlugin(), delay, period);
+    }
 
     public static List<Entity> getAllEntitiesInCuboid(Vector direction, Location center, Vector boxSize) {
         List<Entity> intersectingEntities = new ArrayList<>();
@@ -114,4 +123,5 @@ public class MeleeModule {
 
         return intersectingEntities;
     }
+
 }

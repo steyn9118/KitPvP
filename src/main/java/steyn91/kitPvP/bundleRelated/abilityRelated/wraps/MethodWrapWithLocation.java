@@ -1,4 +1,4 @@
-package steyn91.kitPvP.bundleRelated.abilityModules.wraps;
+package steyn91.kitPvP.bundleRelated.abilityRelated.wraps;
 
 import org.bukkit.Location;
 

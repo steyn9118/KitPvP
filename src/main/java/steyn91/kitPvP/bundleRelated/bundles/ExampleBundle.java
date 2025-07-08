@@ -2,16 +2,15 @@ package steyn91.kitPvP.bundleRelated.bundles;
 
 import lombok.Setter;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.abilityModules.AreaBoxModule;
-import steyn91.kitPvP.bundleRelated.abilityModules.EntitySummonModule;
+import steyn91.kitPvP.bundleRelated.abilityRelated.modules.AreaOfEffectModule;
+import steyn91.kitPvP.bundleRelated.abilityRelated.modules.EntitySummonModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
-import steyn91.kitPvP.bundleRelated.abilityModules.MeleeModule;
-import steyn91.kitPvP.bundleRelated.abilityModules.RangedModule;
+import steyn91.kitPvP.bundleRelated.abilityRelated.modules.MeleeModule;
+import steyn91.kitPvP.bundleRelated.abilityRelated.modules.RangedModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.models.PlayerModel;
 
@@ -78,7 +77,30 @@ public class ExampleBundle implements BundleInterface {
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(1)),
                 player.getEyeLocation().getDirection(),
                 (hitLocation) -> {
-                    EntitySummonModule.summonEntitySimple(playerModel, hitLocation, Allay.class, 20.0, 100, (location) -> RangedModule.shootProjectile(Arrow.class, 1.0, 1.0, playerModel, location, new Vector(0,1,0), (hitLocation1) ->{AreaBoxModule.spawnAreaBox(playerModel, hitLocation1, 1, 5.0, 5.0,5.0);}));
+                    EntitySummonModule.summonEntitySimple(
+                            playerModel,
+                            hitLocation,
+                            Allay.class,
+                            20.0,
+                            100,
+                            (location) -> {
+                        RangedModule.shootProjectile(
+                                Arrow.class,
+                                1.0,
+                                1.0,                  //ЖЕСТКАЯ СВЯЗКА МОДУЛЕЙ СУКА
+                                playerModel,
+                                location,
+                                new Vector(0,1,0),
+                                (hitLocation1) -> {
+                                    AreaOfEffectModule.spawnAreaBox(
+                                            playerModel,
+                                            hitLocation1,
+                                            1,
+                                            5.0,
+                                            5.0,
+                                            5.0);
+                                });
+                            });
                 }
         );
     }

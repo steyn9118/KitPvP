@@ -1,4 +1,4 @@
-package steyn91.kitPvP.mechanicsRelated;
+package steyn91.kitPvP.bundleRelated.abilityRelated;
 
 import lombok.Getter;
 import org.bukkit.Location;
@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class PubSubCore {
+/// Менеджер для подписчиков (любое что хочет ожидать ответа листенера) и публишеров (сами листенеры), работает для их связки
+public class PubSubManager {
     @Getter
     private static final HashMap<UUID, Consumer<Location>> subscribersLocation = new HashMap<>();
 

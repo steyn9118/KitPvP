@@ -1,6 +1,6 @@
 package steyn91.kitPvP.bundleRelated.inputHandlers;
 
-import steyn91.kitPvP.bundleRelated.abilityModules.wraps.MethodWrap;
+import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
 
 public class SimpleInputHandler implements InputHandlerInterface{
 
