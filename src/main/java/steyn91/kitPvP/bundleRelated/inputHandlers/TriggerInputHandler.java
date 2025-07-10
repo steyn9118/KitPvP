@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.scheduler.BukkitRunnable;
 import steyn91.kitPvP.KitPvP;
-import steyn91.kitPvP.bundleRelated.abilityModules.MethodWrap;
+import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
 
 public class TriggerInputHandler implements InputHandlerInterface {
 

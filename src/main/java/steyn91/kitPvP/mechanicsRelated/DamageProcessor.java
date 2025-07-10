@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import steyn91.kitPvP.bundleRelated.abilityRelated.PubSubManager;
 import steyn91.kitPvP.models.ProjectileModel;
 import steyn91.kitPvP.models.ProjectileModelController;
 
@@ -21,15 +22,14 @@ public class DamageProcessor implements Listener {
     }
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
-        if (event.getHitEntity() == null) return;
-        ProjectileModel projectileModel = ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId());
-        dealDamage(
-                projectileModel.getProjectileSource().getPlayer(),
-                event.getHitEntity(),
-                projectileModel.getProjectileDamage()
-        );
         event.setCancelled(true);
+        if (event.getHitEntity() != null) return;
+        Entity entity = event.getEntity();
+        PubSubManager.publish(entity.getUniqueId(), event.getEntity().getLocation());
+        ProjectileModel projectileModel = ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId());
+        ProjectileModelController.removeProjectileModel(projectileModel.getProjectile().getUniqueId());
     }
+
 
     // TODO обработка нанесения/получения урона
     public static void dealDamage(Entity source, Entity target, double damageAmount){
