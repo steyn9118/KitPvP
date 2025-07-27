@@ -14,8 +14,7 @@ public class EntitySummonModule {
             Location spawnLocation,
             Class entity,
             Double entityDamage,
-            int maxTimeAlive,
-            MethodWrapWithLocation wrap
+            int maxTimeAlive
     ){
         LivingEntityModel livingEntityModel = LivingEntityModelController.addLivingEntityModel(entity, sourceModel, spawnLocation, entityDamage, maxTimeAlive);
         UtilsForModules.startTaskLater(100, () -> {
@@ -23,7 +22,6 @@ public class EntitySummonModule {
             tntPrimed.setFuseTicks(0);
             Location allayLocation = livingEntityModel.getEntity().getLocation();
             LivingEntityModelController.removeLivingEntityModel(livingEntityModel.getEntity().getUniqueId());
-            wrap.execute(allayLocation);
         });
     }
 }

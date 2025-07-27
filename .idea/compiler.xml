@@ -32,7 +32,6 @@
           <entry name="$MAVEN_REPOSITORY$/net/md-5/bungeecord-chat/1.20-R0.1/bungeecord-chat-1.20-R0.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/yaml/snakeyaml/2.0/snakeyaml-2.0.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="kitpvp" />
       </profile>

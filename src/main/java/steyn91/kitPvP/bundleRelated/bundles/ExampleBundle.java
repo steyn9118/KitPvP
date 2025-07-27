@@ -1,7 +1,6 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
 import lombok.Setter;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
@@ -55,58 +54,62 @@ public class ExampleBundle implements BundleInterface {
         );
     }
 
+
+
     private void usePrimary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
+        ModuleBinder binder = new ModuleBinder();
         MeleeModule.meleeDamageSimple(
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
                 5.5,
-                () -> {}
+                binder
         );
     }
 
     private void useSecondary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
-        player.sendMessage(Component.text("Вы держались за яица " + secondaryHandler.getTicks() + " тиков"));
-        RangedModule.shootProjectile(
+
+        ModuleBinder binder = new ModuleBinder();
+        binder.addMethodWrap(() -> RangedModule.shootProjectile(
                 Arrow.class,
                 1.0,
                 10.0,
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(1)),
-                player.getEyeLocation().getDirection(),
-                (hitLocation) -> {
-                    EntitySummonModule.summonEntitySimple(
-                            playerModel,
-                            hitLocation,
-                            Allay.class,
-                            20.0,
-                            100,
-                            (location) -> {
-                        RangedModule.shootProjectile(
-                                Arrow.class,
-                                1.0,
-                                1.0,                  //ЖЕСТКАЯ СВЯЗКА МОДУЛЕЙ СУКА
-                                playerModel,
-                                location,
-                                new Vector(0,1,0),
-                                (hitLocation1) -> {
-                                    AreaOfEffectModule.spawnAreaBox(
-                                            playerModel,
-                                            hitLocation1,
-                                            1,
-                                            5.0,
-                                            5.0,
-                                            5.0);
-                                });
-                            });
-                }
+                player.getEyeLocation().getDirection()
+        ));
+
+        binder.addMethodWrap(() -> EntitySummonModule.summonEntitySimple(
+                playerModel,
+                null,
+                Allay.class,
+                20.0,
+                100
+        ));
+
+
+        RangedModule.shootProjectile(
+                Arrow.class,
+                1.0,
+                1.0,
+                playerModel,
+                null,
+                new Vector(0,1,0)
+        );
+        AreaOfEffectModule.spawnAreaBox(
+                playerModel,
+                null,
+                1,
+                5.0,
+                5.0,
+                5.0
         );
     }
 
     private void holdSecondary(PlayerModel playerModel){
-        playerModel.getPlayer().sendMessage(Component.text("Вы держитесь за яица уже " + secondaryHandler.getTicks() + " тиков"));
+
     }
 
     private void useAbilityF(PlayerModel playerModel) {
