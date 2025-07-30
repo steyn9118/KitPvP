@@ -12,6 +12,7 @@ import steyn91.kitPvP.bundleRelated.abilityRelated.modules.MeleeModule;
 import steyn91.kitPvP.bundleRelated.abilityRelated.modules.RangedModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.models.PlayerModel;
+import steyn91.kitPvP.models.ProjectileModel;
 
 public class ExampleBundle implements BundleInterface {
 
@@ -58,20 +59,20 @@ public class ExampleBundle implements BundleInterface {
 
     private void usePrimary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
-        ModuleBinder binder = new ModuleBinder();
+        /*ModuleBinder binder = new ModuleBinder();
         MeleeModule.meleeDamageSimple(
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
                 5.5,
                 binder
-        );
+        );*/
     }
 
     private void useSecondary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
 
-        ModuleBinder binder = new ModuleBinder();
+        /*ModuleBinder binder = new ModuleBinder();
         binder.addMethodWrap(() -> RangedModule.shootProjectile(
                 Arrow.class,
                 1.0,
@@ -105,7 +106,7 @@ public class ExampleBundle implements BundleInterface {
                 5.0,
                 5.0,
                 5.0
-        );
+        );*/
     }
 
     private void holdSecondary(PlayerModel playerModel){
