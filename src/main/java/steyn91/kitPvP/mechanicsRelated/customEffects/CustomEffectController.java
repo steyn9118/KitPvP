@@ -8,8 +8,8 @@ import java.util.List;
 
 public class CustomEffectController {
 
-    private final LinkedList<EffectInterface> effects = new LinkedList<>();
-    private final List<EffectInterface> toBeRemoved = new LinkedList<>();
+    private static final List<EffectInterface> effects = new LinkedList<>();
+    private static final List<EffectInterface> toBeRemoved = new LinkedList<>();
 
     public void start(){
 
@@ -39,11 +39,11 @@ public class CustomEffectController {
         runnable.runTaskTimerAsynchronously(KitPvP.getPlugin(), 0, 1);
     }
 
-    public void addEffect(EffectInterface newEffect){
+    public static void addEffect(EffectInterface newEffect){
         effects.add(newEffect);
     }
 
-    public void removeEffect(EffectInterface effectToRemove){
+    public static void removeEffect(EffectInterface effectToRemove){
         toBeRemoved.add(effectToRemove);
     }
 

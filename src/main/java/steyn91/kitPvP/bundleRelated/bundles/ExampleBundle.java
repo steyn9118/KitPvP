@@ -12,6 +12,7 @@ import steyn91.kitPvP.bundleRelated.abilityRelated.modules.MeleeModule;
 import steyn91.kitPvP.bundleRelated.abilityRelated.modules.RangedModule;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.models.PlayerModel;
+import steyn91.kitPvP.models.parts.CoolDownInterface;
 
 public class ExampleBundle implements BundleInterface {
 
@@ -19,6 +20,7 @@ public class ExampleBundle implements BundleInterface {
     private static BundleCore core = null;
 
     PlayerModel playerModel;
+    private CoolDownInterface primaryCoolDown;
 
     public SimpleInputHandler primaryHandler;
     public HoldInputHandler secondaryHandler;
@@ -31,7 +33,7 @@ public class ExampleBundle implements BundleInterface {
     public ExampleBundle(PlayerModel playerModel){
         this.playerModel = playerModel;
         primaryHandler = new SimpleInputHandler(
-                () -> usePrimary(playerModel)
+                () -> usePrimary(playerModel), primaryCoolDown
         );
         secondaryHandler = new HoldInputHandler(
                 4,

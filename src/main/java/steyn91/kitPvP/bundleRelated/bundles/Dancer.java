@@ -1,8 +1,6 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
-import lombok.Setter;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.RayTraceResult;
@@ -10,34 +8,37 @@ import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
 import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForModules;
-import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
 import steyn91.kitPvP.models.PlayerModel;
+import steyn91.kitPvP.models.parts.*;
 
 import java.util.List;
 
 public class Dancer implements BundleInterface {
-    @Setter
-    private static BundleCore core = new BundleCore(
-            200,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+
+    private final BundleCore core = new BundleCore(
+            new Property(200), // max hp
+            new Property(1), // regen hp
+            new Property(10), // base damage
+            new Property(1000), // resource
+            new Property(0), // regen resource
+            new Property(1), // speed
+            new Property(1.25), // size
+            new Property(1), // cooldown rate
+            new Property(1), // primary cooldown rate
+            new Property(0), // resistance
+            new Property(0) // endurance
     );
 
     private double rageAmount = 0;
+    private CoolDownInterface primaryCoolDown = new SimpleCoolDown(10);
+    private CoolDownInterface secondaryCoolDown = new SimpleCoolDown(10);
     private boolean isDashed = false;
 
-    public SimpleInputHandler primaryHandler;
-    public SimpleInputHandler secondaryHandler;
 
+    private final SimpleInputHandler primaryHandler;
+    private final SimpleInputHandler secondaryHandler;
     public void destruct(){
         primaryHandler.destruct();
         secondaryHandler.destruct();
@@ -45,14 +46,14 @@ public class Dancer implements BundleInterface {
 
     public Dancer(PlayerModel playerModel){
         primaryHandler = new SimpleInputHandler(
-                () -> usePrimary(playerModel)
+                () -> usePrimary(playerModel, primaryCoolDown), primaryCoolDown
         );
         secondaryHandler = new SimpleInputHandler(
-                () -> useSecondary(playerModel)
+                () -> useSecondary(playerModel), secondaryCoolDown
         );
     }
 
-    private void usePrimary(PlayerModel playerModel) {
+    private void usePrimary(PlayerModel playerModel, CoolDownInterface primaryCoolDown) {
         Player player = playerModel.getPlayer();
         List<Entity> entities = UtilsForModules.getAllEntitiesInCuboid(
                 player.getEyeLocation().getDirection(),
@@ -62,8 +63,10 @@ public class Dancer implements BundleInterface {
 
         for (Entity damagedEntity : entities
         ){
-            //TODO сделать проверку, если после рывка, то наносить доп урон через проперти
-            //if (isDashed)
+            if (isDashed) {
+                DamageProcessor.dealDamage(player, damagedEntity, 2 * 1.2);
+                return;
+            }
             DamageProcessor.dealDamage(player, damagedEntity, 2);
         }
     }
@@ -78,6 +81,8 @@ public class Dancer implements BundleInterface {
         Entity hitEntity = entityResult.getHitEntity();
         player.teleport(entityResult.getHitEntity().getLocation());
         isDashed = true;
+        playerModel.getBundle().getBundleCore().baseSpeed().addModifier(new PropertyModifier(PropertyModifier.PropertyModifierType.MULTIPLY, 1.5)); // увеличение скорости после рывка
+        playerModel.getBundle().getBundleCore().naturalHealthRegen().addModifier(new PropertyModifier(PropertyModifier.PropertyModifierType.MULTIPLY, 1.5)); // увеличение хп регена после рывка
         DamageProcessor.dealDamage(player, hitEntity, 2);
         //TODO перезарядка сбрасывается если на ентити была метка
         if (hitEntity.isDead()) {
@@ -89,7 +94,8 @@ public class Dancer implements BundleInterface {
 
 
     @Override
-    public void inputPrimary() { primaryHandler.inputSignal();
+    public void inputPrimary() {
+        primaryHandler.inputSignal();
     }
 
     @Override

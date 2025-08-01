@@ -1,5 +1,7 @@
 package steyn91.kitPvP.bundleRelated;
 
+import steyn91.kitPvP.models.PlayerModel;
+
 public interface BundleInterface {
 
     void inputPrimary(); // ЛКМ

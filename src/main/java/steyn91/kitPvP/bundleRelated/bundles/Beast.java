@@ -2,6 +2,7 @@ package steyn91.kitPvP.bundleRelated.bundles;
 
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
+import steyn91.kitPvP.models.PlayerModel;
 import steyn91.kitPvP.models.parts.Property;
 
 public class Beast implements BundleInterface {
@@ -9,6 +10,7 @@ public class Beast implements BundleInterface {
     private final BundleCore core = new BundleCore(
             new Property(200), // max hp
             new Property(1), // regen hp
+            new Property(10), // base damage
             new Property(1000), // resource
             new Property(0), // regen resource
             new Property(1), // speed
