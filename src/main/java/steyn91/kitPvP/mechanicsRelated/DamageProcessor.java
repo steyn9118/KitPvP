@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import steyn91.kitPvP.bundleRelated.abilityRelated.PubSubManager;
+import steyn91.kitPvP.bundleRelated.abilityRelated.SubscriptionsManager;
 import steyn91.kitPvP.models.ProjectileModel;
 import steyn91.kitPvP.models.ProjectileModelController;
 
@@ -25,7 +25,7 @@ public class DamageProcessor implements Listener {
         event.setCancelled(true);
         if (event.getHitEntity() != null) return;
         Entity entity = event.getEntity();
-        PubSubManager.publish(entity.getUniqueId(), event.getEntity().getLocation());
+        SubscriptionsManager.publish(entity.getUniqueId(), event.getEntity().getLocation());
         ProjectileModel projectileModel = ProjectileModelController.getProjectileModel(event.getEntity().getUniqueId());
         ProjectileModelController.removeProjectileModel(projectileModel.getProjectile().getUniqueId());
     }
