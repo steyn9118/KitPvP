@@ -1,21 +1,23 @@
 package steyn91.kitPvP.bundleRelated;
 
+import steyn91.kitPvP.models.parts.Property;
+
 // TODO остальные характеристики для перса
-// Статические характеристики для каждого кита
+// Общие характеристики персонажей
 public record BundleCore (
-        double maxHealth,
-        double naturalHealthRegen,
+        Property maxHealth,
+        Property naturalHealthRegen,
 
-        double maxResource,
-        double naturalResourceRegen,
+        Property maxResource,
+        Property naturalResourceRegen,
 
-        double baseSpeed,
-        double baseSize,
+        Property baseSpeed,
+        Property baseSize,
 
-        double cooldownRate,
-        double primaryCooldownRate,
+        Property cooldownRate,
+        Property primaryCooldownRate,
 
-        double damageResistance,
+        Property damageResistance,
 
-        double endurance
+        Property endurance
 ) {}

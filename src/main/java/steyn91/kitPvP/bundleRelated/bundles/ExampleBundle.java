@@ -16,18 +16,7 @@ import steyn91.kitPvP.models.PlayerModel;
 public class ExampleBundle implements BundleInterface {
 
     @Setter
-    private static BundleCore core = new BundleCore(
-            200,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-    );
+    private static BundleCore core = null;
 
     PlayerModel playerModel;
 
@@ -58,36 +47,33 @@ public class ExampleBundle implements BundleInterface {
 
     private void usePrimary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
-        ModuleBinder binder = new ModuleBinder();
         MeleeModule.meleeDamageSimple(
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1),
-                5.5,
-                binder
+                5.5
         );
     }
 
     private void useSecondary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
 
-        ModuleBinder binder = new ModuleBinder();
-        binder.addMethodWrap(() -> RangedModule.shootProjectile(
+        RangedModule.shootProjectile(
                 Arrow.class,
                 1.0,
                 10.0,
                 playerModel,
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(1)),
                 player.getEyeLocation().getDirection()
-        ));
+        );
 
-        binder.addMethodWrap(() -> EntitySummonModule.summonEntitySimple(
+        EntitySummonModule.summonEntitySimple(
                 playerModel,
                 null,
                 Allay.class,
                 20.0,
                 100
-        ));
+        );
 
 
         RangedModule.shootProjectile(

@@ -1,27 +1,23 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
-import lombok.Setter;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
+import steyn91.kitPvP.models.parts.Property;
 
 public class Beast implements BundleInterface {
 
-    @Setter
-    private static BundleCore core = new BundleCore(
-            200,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+    private final BundleCore core = new BundleCore(
+            new Property(200), // max hp
+            new Property(1), // regen hp
+            new Property(1000), // resource
+            new Property(0), // regen resource
+            new Property(1), // speed
+            new Property(1.25), // size
+            new Property(1), // cooldown rate
+            new Property(1), // primary cooldown rate
+            new Property(0), // resistance
+            new Property(0) // endurance
     );
-
-    double rageAmount = 0;
-
 
     @Override
     public void inputPrimary() {
@@ -65,6 +61,6 @@ public class Beast implements BundleInterface {
 
     @Override
     public BundleCore getBundleCore() {
-        return null;
+        return core;
     }
 }

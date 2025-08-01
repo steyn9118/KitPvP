@@ -3,7 +3,6 @@ package steyn91.kitPvP.bundleRelated.abilityRelated.modules;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.abilityRelated.PubSubManager;
-import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrapWithLocation;
 import steyn91.kitPvP.models.PlayerModel;
 import steyn91.kitPvP.models.ProjectileModel;
 import steyn91.kitPvP.models.ProjectileModelController;

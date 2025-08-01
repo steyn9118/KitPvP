@@ -3,7 +3,6 @@ package steyn91.kitPvP.bundleRelated.abilityRelated.modules;
 import org.bukkit.Location;
 import org.bukkit.entity.TNTPrimed;
 import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForModules;
-import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrapWithLocation;
 import steyn91.kitPvP.models.LivingEntityModel;
 import steyn91.kitPvP.models.LivingEntityModelController;
 import steyn91.kitPvP.models.PlayerModel;
