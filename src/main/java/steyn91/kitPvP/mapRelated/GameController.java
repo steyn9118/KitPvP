@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class GameController {
 
-    private static List<ArenaClassic> arenas = new LinkedList<>();
+    private static final List<ArenaClassic> arenas = new LinkedList<>();
 
     public static ArenaClassic getClassicArena(String arenaId){
         Optional<ArenaClassic> arena = arenas.stream().filter(arenaClassic -> arenaClassic.getArenaId().equals(arenaId)).findFirst();

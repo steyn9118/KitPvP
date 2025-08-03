@@ -1,36 +1,41 @@
 package steyn91.kitPvP.bundleRelated.bundles;
 
+import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
-import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForModules;
-import steyn91.kitPvP.bundleRelated.inputHandlers.HoldInputHandler;
+import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForAbilities;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
+import steyn91.kitPvP.mechanicsRelated.customEffects.EffectInterface;
 import steyn91.kitPvP.models.PlayerModel;
+import steyn91.kitPvP.models.parts.Property;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Dancer implements BundleInterface {
-    @Setter
-    private static BundleCore core = new BundleCore(
-            200,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+    @Setter private BundleCore core = new BundleCore(
+            new Property(200), // hp
+            new Property(200), // max hp
+            new Property(1), // regen hp
+            new Property(1000), // resource
+            new Property(1000), // max resource
+            new Property(0), // regen resource
+            new Property(1), // speed
+            new Property(1), // size
+            new Property(1), // cooldown rate
+            new Property(1), // primary cooldown rate
+            new Property(0), // resistance
+            new Property(0) // endurance
     );
+
+    @Getter private final List<EffectInterface> effects = new LinkedList<>();
+    @Getter private final PlayerModel playerModel;
 
     private double rageAmount = 0;
     private boolean isDashed = false;
@@ -44,6 +49,7 @@ public class Dancer implements BundleInterface {
     }
 
     public Dancer(PlayerModel playerModel){
+        this.playerModel = playerModel;
         primaryHandler = new SimpleInputHandler(
                 () -> usePrimary(playerModel)
         );
@@ -54,7 +60,7 @@ public class Dancer implements BundleInterface {
 
     private void usePrimary(PlayerModel playerModel) {
         Player player = playerModel.getPlayer();
-        List<Entity> entities = UtilsForModules.getAllEntitiesInCuboid(
+        List<Entity> entities = UtilsForAbilities.getAllEntitiesInCuboid(
                 player.getEyeLocation().getDirection(),
                 player.getEyeLocation().clone().add(player.getEyeLocation().getDirection().clone().multiply(2)),
                 new Vector(3, 1.5, 1)

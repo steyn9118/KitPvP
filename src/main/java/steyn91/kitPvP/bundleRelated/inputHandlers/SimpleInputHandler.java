@@ -1,10 +1,10 @@
 package steyn91.kitPvP.bundleRelated.inputHandlers;
 
-import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
+import steyn91.kitPvP.bundleRelated.abilityRelated.MethodWrap;
 
 public class SimpleInputHandler implements InputHandlerInterface{
 
-    protected MethodWrap outputReceiver;
+    protected final MethodWrap outputReceiver;
 
     public SimpleInputHandler(MethodWrap outputReceiver){
         this.outputReceiver = outputReceiver;

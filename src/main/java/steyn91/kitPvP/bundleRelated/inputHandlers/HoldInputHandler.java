@@ -4,23 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.scheduler.BukkitRunnable;
 import steyn91.kitPvP.KitPvP;
-import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
+import steyn91.kitPvP.bundleRelated.abilityRelated.MethodWrap;
 
 public class HoldInputHandler implements InputHandlerInterface {
 
     private boolean state;
     private boolean previousInput = false;
     private final BukkitRunnable clock;
-    @Getter
-    private int ticks;
-    @Getter
-    @Setter
-    private int threshold = -1;
-    @Setter
-    private boolean sendSignalWhenThresholdReached = false;
-    protected MethodWrap outputReceiver;
-    @Setter
-    protected MethodWrap keepAliveReceiver;
+    @Getter private int ticks;
+    @Getter @Setter private int threshold = -1;
+    @Setter private boolean sendSignalWhenThresholdReached = false;
+    protected final MethodWrap outputReceiver;
+    @Setter protected MethodWrap keepAliveReceiver;
 
     public HoldInputHandler(int clockTickFrequency, int keepAliveFrequency, MethodWrap outputReceiver){
         this.outputReceiver = outputReceiver;

@@ -5,18 +5,82 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.KitPvP;
-import steyn91.kitPvP.bundleRelated.abilityRelated.wraps.MethodWrap;
+import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
+import steyn91.kitPvP.models.*;
 
 import java.util.*;
 
 /// Технические методы, которые нужны или могут понадобиться для абилити модулей
 //TODO добавить методы для упрощения поиска сущностей по разной по формам и размерам области
 // подумать нужны ли методы для запуска прожектайлов и энтити по каким то сэмплам траекторий
-public class UtilsForModules {
+
+public class UtilsForAbilities {
+
+    // Методы из модулей пока что живут тут
+
+    public static void spawnAreaBox(PlayerModel sourceModel, Location spawnLocation, int duration, double xRadius, double yRadius, double zRadius) {
+        for (Entity entity : spawnLocation.getWorld().getNearbyEntities(spawnLocation, xRadius, yRadius, zRadius)) {
+            entity.remove();
+        }
+    }
+
+    public static void summonEntitySimple(
+            PlayerModel sourceModel,
+            Location spawnLocation,
+            Class entity,
+            Double entityDamage,
+            int maxTimeAlive
+    )
+    {
+        LivingEntityModel livingEntityModel = LivingEntityModelController.addLivingEntityModel(entity, sourceModel, spawnLocation, entityDamage, maxTimeAlive);
+        UtilsForAbilities.startTaskLater(100, () -> {
+            TNTPrimed tntPrimed = livingEntityModel.getEntity().getWorld().spawn(livingEntityModel.getEntity().getLocation(), TNTPrimed.class);
+            tntPrimed.setFuseTicks(0);
+            Location allayLocation = livingEntityModel.getEntity().getLocation();
+            LivingEntityModelController.removeLivingEntityModel(livingEntityModel.getEntity().getUniqueId());
+        });
+    }
+
+    public static List<Entity> meleeDamageSimple(PlayerModel sourceModel, Location anchorPoint, Vector boxSize, double damageAmount){
+        Player player = sourceModel.getPlayer();
+        List<Entity> entities = UtilsForAbilities.getAllEntitiesInCuboid(
+                player.getEyeLocation().getDirection(),
+                anchorPoint,
+                boxSize
+        );
+
+        for (Entity damagedEntity : entities
+        ){
+            DamageProcessor.dealDamage(player, damagedEntity, damageAmount);
+        }
+
+        return entities;
+    }
+
+    public static Location shootProjectile(
+            Class projectile,
+            Double strength,
+            Double projectileDamage,
+            PlayerModel sourceModel,
+            Location sourceLocation,
+            Vector direction // нельзя делать нулевым
+    )
+    {
+        ProjectileModel projectileModel = ProjectileModelController.addProjectileModel(projectile, sourceModel, sourceLocation, projectileDamage);
+        projectileModel.getProjectile().setVelocity(direction.normalize().multiply(strength)); // запускает projectile по направлению взгляда игрока, умноженный на силу strength
+        UUID uuid = projectileModel.getProjectile().getUniqueId();
+        return null;
+        //return PubSubManager.subLocation(uuid, (hitLocation) -> wrap.execute(hitLocation));
+    }
+
+    // ------
+
     public static void startTaskLater(int delay, MethodWrap wrap) {
         BukkitRunnable runnable = new BukkitRunnable() {
             @Override

@@ -3,7 +3,6 @@ package steyn91.kitPvP.mechanicsRelated;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -12,7 +11,7 @@ import steyn91.kitPvP.bundleRelated.abilityRelated.SubscriptionsManager;
 import steyn91.kitPvP.models.ProjectileModel;
 import steyn91.kitPvP.models.ProjectileModelController;
 
-import java.util.Collection;
+import java.util.Collections;
 
 public class DamageProcessor implements Listener {
 
@@ -34,7 +33,7 @@ public class DamageProcessor implements Listener {
     // TODO обработка нанесения/получения урона
     public static void dealDamage(Entity source, Entity target, double damageAmount){
         source.sendMessage(Component.text(source + " дал пизды " + target.toString() + " на " + damageAmount + " урона"));
-        target.broadcastHurtAnimation((Collection<Player>) Bukkit.getOnlinePlayers());
+        target.broadcastHurtAnimation(Collections.unmodifiableCollection(Bukkit.getOnlinePlayers()));
     }
     public static void dealHeal(Entity source, Entity target, double healAmount) {
         source.sendMessage(Component.text(source + "присунул" + target.toString() + "на" + healAmount + "см"));

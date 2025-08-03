@@ -7,7 +7,7 @@ public record PropertyModifier(
     public enum PropertyModifierType {
         FLAT, // любой double
         MULTIPLY, // любой double
-        MULTIPLY_LIMITED; // от 0 до 1
+        MULTIPLY_LIMITED // от 0 до 1
     }
 
     public double modify(double value) {

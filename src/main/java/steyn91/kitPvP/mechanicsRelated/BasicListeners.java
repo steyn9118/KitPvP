@@ -2,7 +2,6 @@ package steyn91.kitPvP.mechanicsRelated;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import steyn91.kitPvP.models.PlayerModelController;

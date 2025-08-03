@@ -2,8 +2,6 @@ package steyn91.kitPvP.models;
 
 
 import org.bukkit.Location;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.LivingEntity;
 
 import java.util.HashMap;
 import java.util.UUID;

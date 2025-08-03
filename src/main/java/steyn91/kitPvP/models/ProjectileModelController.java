@@ -1,6 +1,5 @@
 package steyn91.kitPvP.models;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import java.util.HashMap;
 import java.util.UUID;
