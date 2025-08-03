@@ -4,8 +4,7 @@ import lombok.Getter;
 import org.bukkit.entity.Entity;
 
 public class LivingEntityModel {
-    @Getter
-    private final Entity entity;
+    @Getter private final Entity entity;
     private final PlayerModel playerModel;
     private final Double entityDamage;
     private final int maxTimeAlive;

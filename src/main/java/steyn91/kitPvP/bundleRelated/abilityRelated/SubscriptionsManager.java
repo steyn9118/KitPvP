@@ -9,8 +9,7 @@ import java.util.function.Consumer;
 
 /// Менеджер для подписчиков (любое что хочет ожидать ответа листенера) и публишеров (сами листенеры), работает для их связки
 public class SubscriptionsManager {
-    @Getter
-    private static final HashMap<UUID, Consumer<Location>> subscribersLocation = new HashMap<>();
+    @Getter private static final HashMap<UUID, Consumer<Location>> subscribersLocation = new HashMap<>();
 
     public static void subLocation(UUID uuid, Consumer<Location> consumer) {
         subscribersLocation.put(uuid, consumer);

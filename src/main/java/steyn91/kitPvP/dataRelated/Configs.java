@@ -4,7 +4,6 @@ import de.leonhard.storage.Config;
 import de.leonhard.storage.Yaml;
 import steyn91.kitPvP.KitPvP;
 import steyn91.kitPvP.bundleRelated.BundleCore;
-import steyn91.kitPvP.bundleRelated.bundles.ExampleBundle;
 import steyn91.kitPvP.mapRelated.ArenaClassic;
 import steyn91.kitPvP.mapRelated.GameController;
 
@@ -78,21 +77,10 @@ public class Configs {
             // TODO все переменные из конфига
 
             switch (bundleConfig.getString("bundle_id")){
-                case "example_bundle" -> {
-                    ExampleBundle.setCore(new BundleCore(
-                            bundleConfig.getOrSetDefault("max_health", 200d),
-                            bundleConfig.getOrSetDefault("natural_health_regen", 0.2d),// 2/20
-                            bundleConfig.getOrSetDefault("max_resource", 100d),
-                            bundleConfig.getOrSetDefault("natural_resource_regen", 0.5d),// 10/20
-                            bundleConfig.getOrSetDefault("base_speed", 1d),
-                            bundleConfig.getOrSetDefault("base_size", 1d),
-                            bundleConfig.getOrSetDefault("cooldown_rate", 1d),
-                            bundleConfig.getOrSetDefault("primary_cooldown_rate", 1d),
-                            bundleConfig.getOrSetDefault("damage_resistance", 1d),
-                            bundleConfig.getOrSetDefault("endurance", 1d)
-                    ));
+                case "Beast" -> {
+
                 }
-                case "бкбра" -> {
+                case "Dancer" -> {
 
                 }
             }

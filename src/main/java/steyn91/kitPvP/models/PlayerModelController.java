@@ -1,7 +1,7 @@
 package steyn91.kitPvP.models;
 
 import org.bukkit.entity.Player;
-import steyn91.kitPvP.bundleRelated.bundles.ExampleBundle;
+import steyn91.kitPvP.bundleRelated.bundles.Beast;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class PlayerModelController {
     public static void addPlayer(Player player){
         PlayerModel newModel = new PlayerModel(player);
         playerModels.put(player.getUniqueId(), newModel);
-        newModel.setBundle(new ExampleBundle(newModel));
+        newModel.setBundle(new Beast(newModel));
     }
     public static void removeModel(UUID uuid){
         playerModels.remove(uuid).getBundle().destruct();

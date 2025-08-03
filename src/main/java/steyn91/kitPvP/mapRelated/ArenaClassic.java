@@ -4,7 +4,6 @@ import lombok.Getter;
 
 public class ArenaClassic {
 
-    @Getter
-    private String arenaId;
+    @Getter private String arenaId;
 
 }

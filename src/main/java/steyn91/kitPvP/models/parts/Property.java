@@ -8,10 +8,8 @@ import java.util.List;
 public class Property {
 
     private final List<PropertyModifier> modifiers = new LinkedList<>();
-    @Getter
-    private double value;
-    @Getter
-    private final double baseValue;
+    @Getter private double value;
+    @Getter private final double baseValue;
 
     public Property(double baseValue){
         this.value = baseValue;
