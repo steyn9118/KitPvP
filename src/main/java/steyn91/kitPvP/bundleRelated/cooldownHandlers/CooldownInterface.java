@@ -1,9 +1,11 @@
-package steyn91.kitPvP.models.parts;
+package steyn91.kitPvP.bundleRelated.cooldownHandlers;
 
-public interface CoolDownInterface {
+public interface CooldownInterface {
     // выполняется всеми кулдаунами какждый раз когда проходит 2 тика,
     // возвращает True, если кулдаун закончился, False - если нет
-    boolean tick();
-
-    int getRemainingTime(); // возвращает оставшееся время кулдауна, 10 = 1 сек.
+    void tick();
+    void destruct();
+    boolean isActive();
+    void input();
+    void output();
 }

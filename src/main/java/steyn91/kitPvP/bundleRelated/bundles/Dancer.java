@@ -9,6 +9,7 @@ import org.bukkit.util.Vector;
 import steyn91.kitPvP.bundleRelated.BundleCore;
 import steyn91.kitPvP.bundleRelated.BundleInterface;
 import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForAbilities;
+import steyn91.kitPvP.bundleRelated.cooldownHandlers.SimpleCooldown;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
 import steyn91.kitPvP.mechanicsRelated.customEffects.EffectInterface;
@@ -30,6 +31,7 @@ public class Dancer implements BundleInterface {
             new Property(1), // size
             new Property(1), // cooldown rate
             new Property(1), // primary cooldown rate
+            new Property(1), // damage modifier
             new Property(0), // resistance
             new Property(0) // endurance
     );
@@ -40,22 +42,26 @@ public class Dancer implements BundleInterface {
     private double rageAmount = 0;
     private boolean isDashed = false;
 
-    public SimpleInputHandler primaryHandler;
-    public SimpleInputHandler secondaryHandler;
+    private final SimpleInputHandler primaryHandler;
+    private final SimpleCooldown primaryCooldown;
+
+    public final SimpleInputHandler secondaryHandler;
+    private SimpleCooldown secondaryCooldown;
 
     public void destruct(){
         primaryHandler.destruct();
+        primaryCooldown.destruct();
         secondaryHandler.destruct();
+        secondaryCooldown.destruct();
     }
 
     public Dancer(PlayerModel playerModel){
         this.playerModel = playerModel;
-        primaryHandler = new SimpleInputHandler(
-                () -> usePrimary(playerModel)
-        );
-        secondaryHandler = new SimpleInputHandler(
-                () -> useSecondary(playerModel)
-        );
+        primaryHandler = new SimpleInputHandler(() -> usePrimary(playerModel));
+        primaryCooldown = new SimpleCooldown(playerModel, 20*3, primaryHandler::inputSignal);
+
+        secondaryHandler = new SimpleInputHandler(() -> useSecondary(playerModel));
+        secondaryCooldown = new SimpleCooldown(playerModel, 20*10, secondaryHandler::inputSignal);
     }
 
     private void usePrimary(PlayerModel playerModel) {
@@ -88,9 +94,6 @@ public class Dancer implements BundleInterface {
         //TODO перезарядка сбрасывается если на ентити была метка
         if (hitEntity.isDead()) {
         }
-    }
-
-    private void holdSecondary(PlayerModel playerModel) {
     }
 
 

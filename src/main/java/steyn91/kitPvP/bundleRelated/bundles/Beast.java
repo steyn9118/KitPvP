@@ -23,6 +23,7 @@ public class Beast implements BundleInterface {
             new Property(1), // size
             new Property(1), // cooldown rate
             new Property(1), // primary cooldown rate
+            new Property(1), // damage modifier
             new Property(0), // resistance
             new Property(0) // endurance
     );

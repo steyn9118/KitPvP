@@ -19,6 +19,7 @@ public record BundleCore (
         Property cooldownRate, // скорость перезарядки абилок
         Property primaryCooldownRate, // скорость перезарядки конкретно первички
 
+        Property allDamageModifier,
         Property damageResistance,
 
         Property endurance // ?

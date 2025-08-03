@@ -8,7 +8,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 /// Менеджер для подписчиков (любое что хочет ожидать ответа листенера) и публишеров (сами листенеры), работает для их связки
-public class SubscriptionsManager {
+public class SubscriptionsController {
     @Getter private static final HashMap<UUID, Consumer<Location>> subscribersLocation = new HashMap<>();
 
     public static void subLocation(UUID uuid, Consumer<Location> consumer) {
