@@ -5,7 +5,7 @@ import steyn91.kitPvP.mechanicsRelated.customEffects.EffectInterface;
 import steyn91.kitPvP.mechanicsRelated.customEffects.EffectsController;
 import steyn91.kitPvP.mechanicsRelated.customEffects.TickingInterval;
 import steyn91.kitPvP.models.PlayerModel;
-import steyn91.kitPvP.models.parts.PropertyModifier;
+import steyn91.kitPvP.models.propertiesRelated.PropertyModifier;
 
 public class SpeedEffect implements EffectInterface {
 
@@ -28,12 +28,12 @@ public class SpeedEffect implements EffectInterface {
     }
 
     private void apply(){
-        model.getBundle().getBundleCore().speed().addModifier(modifier);
+        model.getBundle().getCore().speed().addModifier(modifier);
         EffectsController.addEffect(this);
     }
 
     public void stop(){
-        model.getBundle().getBundleCore().speed().removeModifier(modifier);
+        model.getBundle().getCore().speed().removeModifier(modifier);
         model.getBundle().getEffects().remove(this);
         EffectsController.removeEffect(this);
     }

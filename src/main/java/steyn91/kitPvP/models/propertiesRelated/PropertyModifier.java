@@ -1,14 +1,8 @@
-package steyn91.kitPvP.models.parts;
+package steyn91.kitPvP.models.propertiesRelated;
 
 public record PropertyModifier(
-        PropertyModifierType propertyModifierType,
+        ModifierType propertyModifierType,
         double modifierValue) {
-
-    public enum PropertyModifierType {
-        FLAT, // любой double
-        MULTIPLY, // любой double
-        MULTIPLY_LIMITED // от 0 до 1
-    }
 
     public double modify(double value) {
         switch (propertyModifierType){

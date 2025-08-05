@@ -24,7 +24,7 @@ public class SimpleCooldown implements CooldownInterface {
     @Override
     public void tick() {
         if (!isActive) return;
-        remainingTime -= (int) playerModel.getBundle().getBundleCore().cooldownRate().getValue();
+        remainingTime -= (int) playerModel.getBundle().getCore().cooldownRate().getValue();
         if (remainingTime < 0) remainingTime = 0;
         isActive = false;
     }

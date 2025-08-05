@@ -1,6 +1,6 @@
 package steyn91.kitPvP.bundleRelated;
 
-import steyn91.kitPvP.models.parts.Property;
+import steyn91.kitPvP.models.propertiesRelated.Property;
 
 // TODO остальные характеристики для перса
 // Общие характеристики персонажей
@@ -22,5 +22,5 @@ public record BundleCore (
         Property allDamageModifier,
         Property damageResistance,
 
-        Property endurance // ?
+        Property endurance // устойчивость к самым жестким дебафам (оглушение, безмолвие и т.д.)
 ) {}

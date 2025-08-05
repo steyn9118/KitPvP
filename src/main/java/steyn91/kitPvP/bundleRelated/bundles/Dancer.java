@@ -12,9 +12,10 @@ import steyn91.kitPvP.bundleRelated.abilityRelated.UtilsForAbilities;
 import steyn91.kitPvP.bundleRelated.cooldownHandlers.SimpleCooldown;
 import steyn91.kitPvP.bundleRelated.inputHandlers.SimpleInputHandler;
 import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
+import steyn91.kitPvP.mechanicsRelated.DamageType;
 import steyn91.kitPvP.mechanicsRelated.customEffects.EffectInterface;
 import steyn91.kitPvP.models.PlayerModel;
-import steyn91.kitPvP.models.parts.Property;
+import steyn91.kitPvP.models.propertiesRelated.Property;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +40,16 @@ public class Dancer implements BundleInterface {
     @Getter private final List<EffectInterface> effects = new LinkedList<>();
     @Getter private final PlayerModel playerModel;
 
-    private double rageAmount = 0;
+    @Override
+    public void takeDamage(double amount, DamageType type) {
+
+    }
+
+    @Override
+    public void heal(double amount) {
+
+    }
+
     private boolean isDashed = false;
 
     private final SimpleInputHandler primaryHandler;
@@ -76,7 +86,7 @@ public class Dancer implements BundleInterface {
         ){
             //TODO сделать проверку, если после рывка, то наносить доп урон через проперти
             //if (isDashed)
-            DamageProcessor.dealDamage(player, damagedEntity, 2);
+            DamageProcessor.dealDamage(player, damagedEntity, 2, DamageType.FLAT);
         }
     }
 
@@ -90,7 +100,7 @@ public class Dancer implements BundleInterface {
         Entity hitEntity = entityResult.getHitEntity();
         player.teleport(entityResult.getHitEntity().getLocation());
         isDashed = true;
-        DamageProcessor.dealDamage(player, hitEntity, 2);
+        DamageProcessor.dealDamage(player, hitEntity, 2, DamageType.FLAT);
         //TODO перезарядка сбрасывается если на ентити была метка
         if (hitEntity.isDead()) {
         }
@@ -98,11 +108,11 @@ public class Dancer implements BundleInterface {
 
 
     @Override
-    public void inputPrimary() { primaryHandler.inputSignal();
+    public void inputPrimary() { primaryCooldown.input();
     }
 
     @Override
-    public void inputSecondary() { secondaryHandler.inputSignal();
+    public void inputSecondary() { secondaryCooldown.input();
 
     }
 
@@ -133,7 +143,7 @@ public class Dancer implements BundleInterface {
 
 
     @Override
-    public BundleCore getBundleCore() {
+    public BundleCore getCore() {
         return null;
     }
 }

@@ -11,7 +11,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 import steyn91.kitPvP.KitPvP;
-import steyn91.kitPvP.mechanicsRelated.DamageProcessor;
 import steyn91.kitPvP.models.*;
 
 import java.util.*;
@@ -54,11 +53,6 @@ public class UtilsForAbilities {
                 anchorPoint,
                 boxSize
         );
-
-        for (Entity damagedEntity : entities
-        ){
-            DamageProcessor.dealDamage(player, damagedEntity, damageAmount);
-        }
 
         return entities;
     }

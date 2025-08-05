@@ -20,6 +20,8 @@ public final class KitPvP extends JavaPlugin {
         manager.registerEvents(new DamageProcessor(), this);
         manager.registerEvents(new InputProcessor(), this);
         manager.registerEvents(new BasicListeners(), this);
+
+        DamageProcessor.startPhysics();
     }
 
     @Override
